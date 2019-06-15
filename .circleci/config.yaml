@@ -11,3 +11,8 @@ jobs:
       - run:
           name: execute linting
           command: cd ..; cd renew-looker-template; node ../look-at-me-sideways
+workflows:
+  version: 2
+  main-linting:
+    jobs:
+      - lint-lookML
