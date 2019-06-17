@@ -10,7 +10,7 @@ jobs:
           command: cd ..; git clone https://github.com/looker-open-source/look-at-me-sideways.git; cd look-at-me-sideways; npm install
       - run:
           name: Execute linting
-          command: cd ..; cd project; node ../look-at-me-sideways --reporting=no
+          command: cd ..; cd project; node ../look-at-me-sideways --reporting=no; if [ ! -f issues.md ]; then echo "No issues.md found. No linting errors."; else echo "file found"; cat issues.md; fi 
 workflows:
   version: 2
   main-linting:
