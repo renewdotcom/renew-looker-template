@@ -6,11 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: checkout LAMS (LookML linting) repo and install
+          name: Checkout LAMS (LookML linting) repo and install
           command: cd ..; git clone https://github.com/looker-open-source/look-at-me-sideways.git; cd look-at-me-sideways; npm install
       - run:
-          name: execute linting
-          command: cd ..; cd renew-looker-template; node ../look-at-me-sideways
+          name: Execute linting
+          command: cd ..; cd project; node ../look-at-me-sideways --reporting=no
 workflows:
   version: 2
   main-linting:
