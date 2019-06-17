@@ -10,7 +10,13 @@ jobs:
           command: cd ..; git clone https://github.com/looker-open-source/look-at-me-sideways.git; cd look-at-me-sideways; npm install
       - run:
           name: Execute linting
-          command: cd ..; cd project; if node ../look-at-me-sideways --reporting=no; then "No linting errors."; else echo "Liniting errors found"; cat issues.md; fi 
+          command: cd ..; cd project; if node ../look-at-me-sideways --reporting=no; then "No linting errors."; FAIL=0; else echo "Liniting errors found"; FAIL=1; fi
+      - run:
+          name: Commit and push changes
+          command: git add developer.md issues.md; git commit -m "LAMS"; git push origin HEAD
+      - run:
+          name: Indicate fail or success
+          command: if [[ $FAIL == 1 ]]; then exit 1; else exit 0; fi
 workflows:
   version: 2
   main-linting:
