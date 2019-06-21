@@ -31,9 +31,9 @@ def main(
         Nothing
     """
     # create payload str that will be the comment
-    file_handler = open(f'{path}/developer.md')
+    file_handler = open(path+'/developer.md')
     content_dev = file_handler.read()
-    file_handler = open(f'{path}/issues.md')
+    file_handler = open(path+'/issues.md')
     content_iss = file_handler.read()
     content_full = 'developer.md:\n'+content_dev+'\nissues.md:\n'+content_iss
     g = Github(github_user_token)
