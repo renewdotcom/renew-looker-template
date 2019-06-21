@@ -53,5 +53,5 @@ if __name__ == "__main__":
         github_repo_owner = str(sys.argv[2])
         github_repo_name = str(sys.argv[3])
         pull_request_num = int(sys.argv[4])
-        path_developer = str(sys.argv[5])
+        path = str(sys.argv[5])
         main(github_user_token, github_repo_owner, github_repo_name, pull_request_num, path)
