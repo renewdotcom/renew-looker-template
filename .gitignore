@@ -1,0 +1,7 @@
+# local files for development
+developer.md
+issues.md
+Pipfile
+Pipfile.lock
+# vscode
+.vscode
