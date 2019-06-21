@@ -1,0 +1,46 @@
+version: 2.1
+jobs:
+  lint-lookML:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run:
+          name: Checkout LAMS (LookML linting) repo and install
+          command: |
+            cd ..;
+            git clone https://github.com/looker-open-source/look-at-me-sideways.git;
+            cd look-at-me-sideways;
+            npm install;
+      - run:
+          name: Execute linting
+          command: |
+            cd ..;
+            cd project;
+            if node ../look-at-me-sideways --reporting=no;
+            then echo "No linting errors found.";
+            else echo "Linting errors found";
+            touch FAIL
+            fi;
+      - run:
+          name: Send comment to Github
+          command: |
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            sudo python3 get-pip.py
+            sudo pip3 install PyGithub
+            PR_NUM=${CIRCLE_PULL_REQUEST##*/}
+            python3 .circleci/scripts/push_comment_gh.py $GITHUB_USER_TOKEN $GITHUB_REPO_OWNER $GITHUB_REPO_NAME $PR_NUM $(pwd)
+      - run:
+          name: Indicate fail or success
+          command: |
+            if test -f FAIL;
+            then echo "Failure. Linting errors found. See PR on github.";
+            exit 1;
+            else echo "No errors found.";
+            exit 0;
+            fi
+workflows:
+  version: 2
+  main-linting:
+    jobs:
+      - lint-lookML
