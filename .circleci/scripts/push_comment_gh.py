@@ -25,7 +25,7 @@ def main(
             script is living in, that repo.
         pull_request_number (int): the number of the pull request. Can be found in the
             url.
-        path (str): path to issues.md and developer.md e.g. /User/home/repo
+        path (str): path to issues.md and developer.md e.g. /User/home/project
     
     Returns:
         Nothing
