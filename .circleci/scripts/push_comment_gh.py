@@ -14,7 +14,7 @@ def main(
     """
     This function will take in environment variables (usually from CI environment) and
     post a comment where the content is linting output (issues.md and developer.md).
-    The script takes in args when you call it. 
+    The script takes in args when you call it.
 
     Args:
         github_user_token (str): https://github.com/settings/tokens for the CI Github
@@ -26,7 +26,7 @@ def main(
         pull_request_number (int): the number of the pull request. Can be found in the
             url.
         path (str): path to issues.md and developer.md e.g. /User/home/project
-    
+
     Returns:
         Nothing
     """
