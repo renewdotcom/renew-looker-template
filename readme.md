@@ -9,4 +9,4 @@ features:
 This repo attempts to follow best practices as explained by [this article](https://discourse.looker.com/t/introducing-lams-a-lookml-style-guide-and-linter/10603)
 
 ## Bootstrapping a new project
-something
+<TODO>
