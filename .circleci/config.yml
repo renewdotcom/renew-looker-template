@@ -25,10 +25,16 @@ jobs:
       - run:
           name: Send comment to Github
           command: |
+            echo "Install python3"
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             sudo python3 get-pip.py
             sudo pip3 install PyGithub
             PR_NUM=${CIRCLE_PULL_REQUEST##*/}
+            echo "Execute comment submission"
+            echo "GITHUB_REPO_OWNER: $GITHUB_REPO_OWNER"
+            echo "GITHUB_REPO_OWNER: $GITHUB_REPO_NAME"
+            echo "PR_NUM: $PR_NUM"
+            echo "PWD: $(pwd)"
             python3 .circleci/scripts/push_comment_gh.py $GITHUB_USER_TOKEN $GITHUB_REPO_OWNER $GITHUB_REPO_NAME $PR_NUM $(pwd)
       - run:
           name: Indicate fail or success
