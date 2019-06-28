@@ -49,7 +49,7 @@ if __name__ == "__main__":
             "For example: python push_comment_gh.py abcd3fg4 renewdotcom renew-looker-template 4 /Users/user/renew-looker-template"
         )
         # returns a non successful code
-        return 1
+        exit(1)
     else:
         github_user_token = str(sys.argv[1])
         github_repo_owner = str(sys.argv[2])
