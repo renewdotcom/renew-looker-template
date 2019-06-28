@@ -23,7 +23,8 @@ This repo attempts to follow best practices as explained by [this article](https
 12. Pull from master/production.
 13. Now onto configuring circleci (which will add linting)
 14. Go to ciricleci.com > add project. Search for your project then click add. For language put other. Then click on start building. DO NOT follow the circleci steps. The configurations are already in the repo!
-15. On the [jobs page](https://circleci.com/gh/renewdotcom) click on the gear icon for your project name. Then click on environment variables on the side.
+
+15. On the [jobs page](https://circleci.com/gh/renewdotcom) click on the gear icon for your project name. Then click on enviroment variables on the side.
 16. Add the following environment variables: GITHUB_REPO_NAME = <name of your repo>, GITHUB_REPO_OWNER = <usually renewdotcom but in general whichever account name is the owner of the repo> and GITHUB_USER_TOKEN = <This is the user who will comment's deploy token. Usually this is renewdeploy. Contact admins to get this token>
 17. You should see a job run: \<name of your repo> >> master >> 1 (lint-lookML). You should see "No errors found"
 18. Go back to the [projects page](https://renewrenew.looker.com/projects) and configure your project and model names. Save.
