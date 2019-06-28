@@ -32,7 +32,7 @@ jobs:
             PR_NUM=${CIRCLE_PULL_REQUEST##*/}
             echo "Execute comment submission"
             echo "GITHUB_REPO_OWNER: $GITHUB_REPO_OWNER"
-            echo "GITHUB_REPO_OWNER: $GITHUB_REPO_NAME"
+            echo "GITHUB_REPO_NAME: $GITHUB_REPO_NAME"
             echo "PR_NUM: $PR_NUM"
             echo "PWD: $(pwd)"
             python3 .circleci/scripts/push_comment_gh.py $GITHUB_USER_TOKEN $GITHUB_REPO_OWNER $GITHUB_REPO_NAME $PR_NUM $(pwd)
