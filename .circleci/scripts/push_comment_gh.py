@@ -26,11 +26,7 @@ def main(
         pull_request_number (int): the number of the pull request. Can be found in the
             url.
         path (str): path to issues.md and developer.md e.g. /User/home/project
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> branch 'REN-4398-circle-job' of git@github.com:renewdotcom/renew-looker-template.git
     Returns:
         Nothing
     """
@@ -52,6 +48,8 @@ if __name__ == "__main__":
             "Proper use: python push_comment_gh.py <GITHUB_USER_TOKEN> <GITHUB_REP_OWNER> <GITHUB_REPO_NAME> <PR_NUM> <PATH>"
             "For example: python push_comment_gh.py abcd3fg4 renewdotcom renew-looker-template 4 /Users/user/renew-looker-template"
         )
+        # returns a non successful code
+        exit(1)
     else:
         github_user_token = str(sys.argv[1])
         github_repo_owner = str(sys.argv[2])
