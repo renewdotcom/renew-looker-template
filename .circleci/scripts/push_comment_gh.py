@@ -26,11 +26,7 @@ def main(
         pull_request_number (int): the number of the pull request. Can be found in the
             url.
         path (str): path to issues.md and developer.md e.g. /User/home/project
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> branch 'REN-4398-circle-job' of git@github.com:renewdotcom/renew-looker-template.git
     Returns:
         Nothing
     """
