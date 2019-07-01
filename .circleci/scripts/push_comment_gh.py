@@ -37,6 +37,7 @@ def main(
     content_iss = file_handler.read()
     g = Github(github_user_token)
     repo = g.get_user(github_repo_owner).get_repo(github_repo_name)
+    pr = repo.get_pull(pull_request_num)
     pr.create_issue_comment(content_dev)
     pr.create_issue_comment(content_iss)
 
