@@ -35,11 +35,10 @@ def main(
     content_dev = file_handler.read()
     file_handler = open(path+'/issues.md')
     content_iss = file_handler.read()
-    content_full = 'developer.md:\n'+content_dev+'\nissues.md:\n'+content_iss
     g = Github(github_user_token)
     repo = g.get_user(github_repo_owner).get_repo(github_repo_name)
-    pr = repo.get_pull(pull_request_num)
-    pr.create_issue_comment(content_full)
+    pr.create_issue_comment(content_dev)
+    pr.create_issue_comment(content_iss)
 
 
 if __name__ == "__main__":
