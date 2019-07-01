@@ -1,7 +1,7 @@
 """Script to read developer.md and issues.md and post them as comments to github"""
 import sys
 import logging
-from github import Github
+import github
 
 
 def main(
@@ -35,12 +35,17 @@ def main(
     content_dev = file_handler.read()
     file_handler = open(path+'/issues.md')
     content_iss = file_handler.read()
-    g = Github(github_user_token)
+    g = github.Github(github_user_token)
     repo = g.get_user(github_repo_owner).get_repo(github_repo_name)
     pr = repo.get_pull(pull_request_num)
     pr.create_issue_comment(content_dev)
-    pr.create_issue_comment(content_iss)
-
+    try:
+        pr.create_issue_comment(content_iss)
+    except github.GithubException as e:
+        logging.error(e)
+        logging.error("Comment is too long for posting as a comment to Github. logging comment here.")
+        pr.create_issue_comment("Linting errors have been written in circleci because the comment is too long for a comment. Please correct the linting errors.")
+        print(content_iss)
 
 if __name__ == "__main__":
     if len(sys.argv) < 6:
