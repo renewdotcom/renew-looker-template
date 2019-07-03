@@ -43,9 +43,12 @@ def main(
         pr.create_issue_comment(content_iss)
     except github.GithubException as e:
         logging.error(e)
-        logging.error("Comment is too long for posting as a comment to Github. logging comment here.")
-        pr.create_issue_comment("Linting errors have been written in circleci because the comment is too long for a comment. Please correct the linting errors.")
-        print(content_iss)
+        if e.data['errors'][0]['message'] == 'Body is too long (maximum is 65536 characters)':
+            logging.error("Comment is too long for posting as a comment to Github. Logging comment here.")
+            pr.create_issue_comment("Linting errors have been written in circleci because the comment is too long for a comment. Please correct the linting errors.")
+            print(content_iss)
+        else:
+            logging.error("unexpected error")
 
 if __name__ == "__main__":
     if len(sys.argv) < 6:
