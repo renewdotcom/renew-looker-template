@@ -1,7 +1,8 @@
 """Script to read developer.md and issues.md and post them as comments to github"""
 import sys
+import os
 import logging
-from github import Github
+import github
 
 
 def main(
@@ -35,12 +36,21 @@ def main(
     content_dev = file_handler.read()
     file_handler = open(path+'/issues.md')
     content_iss = file_handler.read()
-    content_full = 'developer.md:\n'+content_dev+'\nissues.md:\n'+content_iss
-    g = Github(github_user_token)
+    g = github.Github(github_user_token)
     repo = g.get_user(github_repo_owner).get_repo(github_repo_name)
     pr = repo.get_pull(pull_request_num)
-    pr.create_issue_comment(content_full)
-
+    pr.create_issue_comment(content_dev)
+    try:
+        pr.create_issue_comment(content_iss)
+    except github.GithubException as e:
+        logging.error(e)
+        if e.data['errors'][0]['message'].startswith('Body is too long'):
+            logging.error("Comment is too long for posting as a comment to Github. Logging comment here.")
+            link = os.environ['CIRCLE_BUILD_URL']
+            pr.create_issue_comment("Linting errors detected, but output is too long to be posted in Github comment. See CircleCI job for full output: " + link + " \nNote you can download the output from circle and rename the file from .txt -> .md.")
+            logging.error(content_iss)
+        else:
+            logging.error("unexpected error")
 
 if __name__ == "__main__":
     if len(sys.argv) < 6:

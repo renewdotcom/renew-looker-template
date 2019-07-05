@@ -1,4 +1,4 @@
-# Looker Renew Template
+# Renew Looker Template
 
 This repository is a template for all Looker projects at Renew. It has a few key
 features:
@@ -26,9 +26,11 @@ This repo attempts to follow best practices as explained by [this article](https
 
 15. On the [jobs page](https://circleci.com/gh/renewdotcom) click on the gear icon for your project name. Then click on enviroment variables on the side.
 16. Add the following environment variables: GITHUB_REPO_NAME = <name of your repo>, GITHUB_REPO_OWNER = <usually renewdotcom but in general whichever account name is the owner of the repo> and GITHUB_USER_TOKEN = <This is the user who will comment's deploy token. Usually this is renewdeploy. Contact admins to get this token>
-17. You should see a job run: \<name of your repo> >> master >> 1 (lint-lookML). You should see "No errors found"
-18. Go back to the [projects page](https://renewrenew.looker.com/projects) and configure your project and model names. Save.
-19. Rejoice! Enjoy! Hack away!
+17. Go to your repo at github.com/renewdotcom/<your repo>. Go to the teams tab and add the renew deploy user with write access. Else you will see errors like: "github.GithubException.UnknownObjectException: 404 {'documentation_url': 'https://developer.github.com/v3/repos/#get', 'message': 'Not Found'}
+Exited with code 1"
+18. You should see a job run: \<name of your repo> >> master >> 1 (lint-lookML). You should see "No errors found"
+19. Go back to the [projects page](https://renewrenew.looker.com/projects) and configure your project and model names. Save.
+20. Rejoice! Enjoy! Hack away!
 
 ### Important things to remember while contibuting code
 1. Your development branch should NOT be the default looker gives you but rather your ticket number and branch name should match (REN-1234-xyz-thing)
