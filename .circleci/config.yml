@@ -49,7 +49,7 @@ workflows:
   version: 2
   main-linting:
     jobs:
-      - lint-lookML
+      - lint-lookML:
           filters:
             branches:
               ignore:
