@@ -50,3 +50,7 @@ workflows:
   main-linting:
     jobs:
       - lint-lookML
+          filters:
+            branches:
+              ignore:
+                - master
