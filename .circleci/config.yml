@@ -6,6 +6,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Check if this commit is a PR
+          command: |
+            PR_NUM=${CIRCLE_PULL_REQUEST##*/}
+            if [ -z "$PR_NUM" ]
+            then echo "Circle job will not run because there is no PR associated with this commit";
+            exit 0;
+            fi
+      - run:
           name: Checkout LAMS (LookML linting) repo and install
           command: |
             cd ..;
