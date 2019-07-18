@@ -11,7 +11,7 @@ jobs:
             PR_NUM=${CIRCLE_PULL_REQUEST##*/}
             if [ -z "$PR_NUM" ]
             then echo "Circle job will not run because there is no PR associated with this commit. If there is a PR with this commit, as in the PR had just opened then please rerun the job OR push another commit.";
-            exit 0;
+            exit 1;
             fi
       - run:
           name: Checkout LAMS (LookML linting) repo and install
