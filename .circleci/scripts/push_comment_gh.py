@@ -38,19 +38,26 @@ def main(
     content_iss = file_handler.read()
     g = github.Github(github_user_token)
     repo = g.get_user(github_repo_owner).get_repo(github_repo_name)
-    pr = repo.get_pull(pull_request_num)
-    pr.create_issue_comment(content_dev)
-    try:
-        pr.create_issue_comment(content_iss)
-    except github.GithubException as e:
-        logging.error(e)
-        if e.data['errors'][0]['message'].startswith('Body is too long'):
-            logging.error("Comment is too long for posting as a comment to Github. Logging comment here.")
-            link = os.environ['CIRCLE_BUILD_URL']
-            pr.create_issue_comment("Linting errors detected, but output is too long to be posted in Github comment. See CircleCI job for full output: " + link + " \nNote you can download the output from circle and rename the file from .txt -> .md.")
-            logging.error(content_iss)
-        else:
-            logging.error("unexpected error")
+    # if there is no PR open then log the content
+    if pull_request_num == "" or pull_request_num is None:
+        logging.info(content_dev)
+    else:
+        pr = repo.get_pull(pull_request_num)
+        pr.create_issue_comment(content_dev)
+    if pull_request_num == "" or pull_request_num is None:
+        logging.info(content_dev)
+    else:
+        try:
+            pr.create_issue_comment(content_iss)
+        except github.GithubException as e:
+            logging.error(e)
+            if e.data['errors'][0]['message'].startswith('Body is too long'):
+                logging.error("Comment is too long for posting as a comment to Github. Logging comment here.")
+                link = os.environ['CIRCLE_BUILD_URL']
+                pr.create_issue_comment("Linting errors detected, but output is too long to be posted in Github comment. See CircleCI job for full output: " + link + " \nNote you can download the output from circle and rename the file from .txt -> .md.")
+                logging.error(content_iss)
+            else:
+                logging.error("unexpected error")
 
 if __name__ == "__main__":
     if len(sys.argv) < 6:
