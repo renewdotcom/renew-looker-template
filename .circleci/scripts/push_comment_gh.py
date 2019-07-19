@@ -41,12 +41,10 @@ def main(
     # if there is no PR open then log the content
     if pull_request_num == "" or pull_request_num is None:
         logging.info(content_dev)
+        logging.info(content_iss)
     else:
         pr = repo.get_pull(pull_request_num)
         pr.create_issue_comment(content_dev)
-    if pull_request_num == "" or pull_request_num is None:
-        logging.info(content_dev)
-    else:
         try:
             pr.create_issue_comment(content_iss)
         except github.GithubException as e:
