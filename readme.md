@@ -90,3 +90,11 @@ When creating a measure or dimension that references multiple views, always deno
 
 #### 4g. Derived Tables (DT)
 When creating a derived table from an explore, always denote that the explore is relied on by a derived table with a clear comment. It is generally recommended to include the link to the explore from when the DT was created.
+
+## Workflow (NOTE WELL ALL LOOKML DEVS)
+1. On looker's web IDE you make some commits.
+2. You push commits to GH (with or without PR open)
+3. If PR is open you go to the PR and you will see a comment from a user RenewDeploy who is outputing the linting errors
+4. If PR is not open at the time of push 1 of 2 sceniros will happen:
+    1. If there are no liniting errors then your circle job will succeed. When the PR is opened no comment will be shown because at the time of the push there was no PR open. You can continue as usual.
+    2. If there are liniting errors then your circle jonb will fail. When the PR is openedn there will no comment explaining why the job failed. You can click into the details of the failed job (the circleci job called lint-lookml) then you can hit rerun on the top left. Or you can push another commit to the PR. After either action is done you should see the comments pop up on the PR as usual.
