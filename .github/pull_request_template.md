@@ -8,6 +8,7 @@
 - [ ] Documentation update (no functional changes introduced)
 - [ ] Refactor (no functional changes introduced)
 <!--- Describe your changes in detail -->
+<!--- Are there any changes that will break existing Looks/Dashboards-->
 
 
 ## Test Procedure
@@ -16,18 +17,15 @@
 <!--- and results of any automated test suites or manual test steps executed -->
 
 
-## Deployment Steps
-<!--- List the environments where these changes will be deployed. -->
-<!--- How and when will the changes be deployed? -->
-<!--- Document the corresponding deployment commands/steps as appropriate. -->
-
-
 ## Additional Notes (optional)
 <!--- Specific guidance for performing code review or areas that requires --> 
 <!--- special attention. -->
 
 
 ## Related PRs (optional)
+
+
+## Discoveries/Observations (optional)
 
 
 ## Review the following
