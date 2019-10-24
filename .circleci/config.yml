@@ -6,20 +6,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Checkout LAMS (LookML linting) repo and install
-          command: |
-            cd ..;
-            git clone https://github.com/looker-open-source/look-at-me-sideways.git;
-            cd look-at-me-sideways;
-            npm install;
-      - run:
           name: Execute linting
           command: |
-            cd ..;
-            cd project;
-            if node ../look-at-me-sideways --reporting=no;
+            npm set prefix ~/.npm
+            PATH="$HOME/.npm/bin:$PATH"
+            PATH="./node_modules/.bin:$PATH"
+            source ~/.bashrc
+            npm install -g @looker/look-at-me-sideways;
+            if lams --reporting=no;
             then echo "No linting errors found.";
-            else echo "Linting errors found";
+            else echo "Linting errors found.";
             touch FAIL
             fi;
       - run:
